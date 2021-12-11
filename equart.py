@@ -19,13 +19,46 @@ class deprem(QMainWindow):
     self.ui.btnAll.setToolTip("Ctrl+A ya bas")
     self.ui.btnDanger.setToolTip("Ctrl+D ye bas")
 
-
-
+    self.ui.btnDanger.clicked.connect(self.btnDangerClickedSlot)
+    self.ui.btnAll.clicked.connect(self.btnAllClickedSlot)
     self.ui.btnExt.clicked.connect(self.btnExtClickedSlot)
-    self.ui.lndtSehir.returnPressed.connect(self.procces1)
-    self.ui.lndtDeger.returnPressed.connect(self.procces)
+    self.ui.lndtSehir.returnPressed.connect(self.proccesCity)
+    self.ui.lndtDeger.returnPressed.connect(self.proccesValue)
 
- def procces1(self):
+ def btnAllClickedSlot(self):
+     r = requests.get("https://turkiyedepremapi.herokuapp.com")
+     payload = {}
+     headers = {}
+     responseAll = requests.request("GET",
+                                     url="https://turkiyedepremapi.herokuapp.com/api",
+                                     headers=headers, data=payload)
+     resultAll = json.loads(responseAll.text)
+     print(resultAll)
+
+ # def btnDangerClickedSlot(self):
+ #     r = requests.get("https://turkiyedepremapi.herokuapp.com")
+ #     received_signalDanger = 7
+ #     payload = {}
+ #     headers = {}
+ #     responseDanger = requests.request("GET",
+ #                                       url="https://turkiyedepremapi.herokuapp.com/api?min=" + received_signalDanger + "&max=" + received_signalDanger,
+ #                                       headers=headers, data=payload)
+ #     resultDanger = json.loads(responseDanger.text)
+ #     print("Yıkıcı Hasar Alanlar:  ")
+ #
+ #     # if responseDanger>=7:
+ #
+ #
+ #     print(resultDanger)
+ #
+ #     # else:
+ #     #     print("Yıkıcı Hasar Saptanmadı.")
+ #
+ #
+
+
+ def proccesCity(self):
+
      r = requests.get("https://turkiyedepremapi.herokuapp.com")
      received_signalCity = self.ui.lndtSehir.text()
      payload = {}
@@ -37,22 +70,20 @@ class deprem(QMainWindow):
      print(resultCity)
 
 
- def procces(self):
-      r = requests.get("https://turkiyedepremapi.herokuapp.com")
 
-      received_signal = self.ui.lndtDeger.text()
-
-      payload = {}
-      headers = {}
-      responseValue = requests.request("GET",
-                                  url="https://turkiyedepremapi.herokuapp.com/api?min="+received_signal+"&max="+received_signal,
-                                  headers=headers, data=payload)
-      resultValue = json.loads(responseValue.text)
-      print("Deprem Büyüklüğü: ", received_signal)
-      print(resultValue)
+ def proccesValue(self):
+    r = requests.get("https://turkiyedepremapi.herokuapp.com")
+    received_signalValue = self.ui.lndtDeger.text()
+    payload = {}
+    headers = {}
+    responseValue = requests.request("GET ",url="https://turkiyedepremapi.herokuapp.com/api?min="+received_signal+"&max="+received_signal,
+                                          headers=headers, data=payload)
+    resultValue = json.loads(responseValue.text)
+    print("Deprem Büyüklüğü: ", received_signalValue)
+    print(resultValue)
 
 
-      # print("Alınan Yazı" , received_signal)
+
 
 
  def btnExtClickedSlot(self):

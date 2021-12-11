@@ -12,10 +12,10 @@ class Ui_frmMain(object):
     def setupUi(self, frmMain):
         frmMain.setObjectName("frmMain")
         frmMain.resize(730, 533)
-        frmMain.setMinimumSize(QtCore.QSize(600, 400))
-        frmMain.setMaximumSize(QtCore.QSize(800, 600))
+        frmMain.setMinimumSize(QtCore.QSize(730, 533))
+        frmMain.setMaximumSize(QtCore.QSize(730, 533))
         font = QtGui.QFont()
-        font.setStyleStrategy(QtGui.QFont.NoAntialias)
+        font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         frmMain.setFont(font)
         self.btnUpdate = QtWidgets.QPushButton(frmMain)
         self.btnUpdate.setGeometry(QtCore.QRect(270, 460, 111, 61))
@@ -80,6 +80,7 @@ class Ui_frmMain(object):
         self.label_2 = QtWidgets.QLabel(frmMain)
         self.label_2.setGeometry(QtCore.QRect(50, 410, 61, 19))
         font = QtGui.QFont()
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         font.setStyleStrategy(QtGui.QFont.NoAntialias)
@@ -87,10 +88,18 @@ class Ui_frmMain(object):
         self.label_2.setObjectName("label_2")
         self.txtBrowser = QtWidgets.QTextBrowser(frmMain)
         self.txtBrowser.setGeometry(QtCore.QRect(20, 40, 701, 331))
+        self.txtBrowser.setMaximumSize(QtCore.QSize(701, 331))
         self.txtBrowser.setObjectName("txtBrowser")
-        self.cbSehir = QtWidgets.QComboBox(frmMain)
-        self.cbSehir.setGeometry(QtCore.QRect(350, 390, 241, 31))
-        self.cbSehir.setObjectName("cbSehir")
+        self.comboSehir = QtWidgets.QComboBox(frmMain)
+        self.comboSehir.setGeometry(QtCore.QRect(350, 390, 241, 31))
+        font = QtGui.QFont()
+        font.setStyleStrategy(QtGui.QFont.PreferAntialias)
+        self.comboSehir.setFont(font)
+        self.comboSehir.setObjectName("comboSehir")
+        self.label_3 = QtWidgets.QLabel(frmMain)
+        self.label_3.setGeometry(QtCore.QRect(240, 380, 31, 21))
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setObjectName("label_3")
 
         self.retranslateUi(frmMain)
         QtCore.QMetaObject.connectSlotsByName(frmMain)
@@ -98,7 +107,7 @@ class Ui_frmMain(object):
     def retranslateUi(self, frmMain):
         _translate = QtCore.QCoreApplication.translate
         frmMain.setWindowTitle(_translate("frmMain", "Anasayfa"))
-        self.btnUpdate.setText(_translate("frmMain", "Güncelle"))
+        self.btnUpdate.setText(_translate("frmMain", "Yeniden Başla"))
         self.btnUpdate.setShortcut(_translate("frmMain", "Ctrl+U"))
         self.btnAll.setText(_translate("frmMain", "Bütün \n"
 "Depremler"))
@@ -111,4 +120,5 @@ class Ui_frmMain(object):
         self.lblBlck.setText(_translate("frmMain", "BLACKNIGHT"))
         self.label.setText(_translate("frmMain", "Büyüklük:"))
         self.label_2.setText(_translate("frmMain", "Vilayet:"))
+        self.label_3.setText(_translate("frmMain", "0-20 "))
 
